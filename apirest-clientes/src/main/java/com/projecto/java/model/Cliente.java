@@ -11,10 +11,13 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idcliente;
 
+	@Column(nullable = false)
 	private String nombre;
+
 	private String apellido;
+	@Column(nullable = false,unique = true)
 	private String email;
-	
+
 	private int telefono;
 	@Column (name = "create_at")
 	@Temporal (TemporalType.DATE)
