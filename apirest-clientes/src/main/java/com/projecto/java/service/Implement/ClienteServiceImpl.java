@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projecto.java.Dao.ClienteRepository;
 import com.projecto.java.model.Cliente;
+import com.projecto.java.model.Region;
 import com.projecto.java.service.ClienteService;
 
 @Service
@@ -43,6 +44,13 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public void deleteCliente(int id) {
 		repo.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Region> findAllRegiones() {
+		
+		return repo.findAllRegions();
 	}
 	
 	

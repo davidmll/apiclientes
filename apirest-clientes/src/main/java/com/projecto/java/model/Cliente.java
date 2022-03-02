@@ -3,6 +3,8 @@ package com.projecto.java.model;
 import java.util.Date;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -15,14 +17,23 @@ public class Cliente {
 	private String nombre;
 
 	private String apellido;
-	@Column(nullable = false,unique = true)
+	@Column(nullable = false, unique = true)
 	private String email;
 
 	private int telefono;
-	@Column (name = "create_at")
-	@Temporal (TemporalType.DATE)
+	@Column(name = "create_at")
+	@Temporal(TemporalType.DATE)
 	private Date createdAt;
+
+	private String imagenes;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn (name = "region_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer" , "handler"})
+//	Many = customer y one a region
+	private Region region;
+
+
 //	Method
 	@PrePersist
 	public void prePersist() {
@@ -30,7 +41,7 @@ public class Cliente {
 	}
 
 //	Getters and Setters
-	
+
 	public int getIdcliente() {
 		return idcliente;
 	}
@@ -78,5 +89,23 @@ public class Cliente {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
+	public String getImagenes() {
+		return imagenes;
+	}
+
+	public void setImagenes(String imagenes) {
+		this.imagenes = imagenes;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+	
+	
 
 }

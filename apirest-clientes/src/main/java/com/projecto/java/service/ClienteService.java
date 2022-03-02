@@ -3,6 +3,7 @@ package com.projecto.java.service;
 import java.util.List;
 
 import com.projecto.java.model.Cliente;
+import com.projecto.java.model.Region;
 
 public interface ClienteService {
 
@@ -14,4 +15,5 @@ public interface ClienteService {
 	
 	public void deleteCliente(int id);
 	
+	public List<Region> findAllRegiones();
 }
